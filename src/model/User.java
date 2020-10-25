@@ -4,12 +4,14 @@ public class User {
 	private String password;
 	private int age;
 	private Category category;
+	private int sharedSongs;
 	
-	public User(String userName, String password, int age, String category) {
+	public User(String userName, String password, int age) {
 		this.userName = userName;
 		this.password = password;
 		this.age = age;
-		this.category = Category.valueOf(category); // We could use toUpperCase or pass it directly like a Type Category
+		this.category = Category.valueOf("NEWBIE"); // We could use toUpperCase or pass it directly like a Type Category
+		sharedSongs = 0;
 	}
 	
 	public String getUserName() {
@@ -42,6 +44,10 @@ public class User {
 	
 	public void setCategory(String category) {
 		// Transform String to Category
+	}
+	
+	public void shareSong() {
+		
 	}
 	
 	public String toString() {

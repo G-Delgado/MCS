@@ -3,10 +3,10 @@ public class Song {
 	private String title;
 	private String artist;
 	private String date; // Could be of type Date
-	private String duration; // Could be of type duration or seconds
+	private Duration duration; // Could be of type duration or seconds
 	private Genre genre;
 	
-	public Song(String title, String artist, String date, String duration, String genre) {
+	public Song(String title, String artist, String date, Duration duration, String genre) {
 		this.title = title;
 		this.artist = artist;
 		this.date = date;
@@ -39,7 +39,7 @@ public class Song {
 		
 	}
 	
-	public String getDuration() {
+	public Duration getDuration() {
 		return duration;
 	}
 	

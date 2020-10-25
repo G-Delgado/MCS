@@ -1,8 +1,17 @@
 package model;
 public class PrivatePlaylist extends Playlist {
+	private User user;
 	
-	public PrivatePlaylist(String name, int MAX_SONGS) { // I see a bit of a problem in MAX_SONGS
-		super(name, MAX_SONGS); // Para indicar que estos 3 ya estan inicializados
-		// Solo se inicializan los atributos que pongamos nuevos en esta case.
+	public PrivatePlaylist(String name, Duration duration, User user) {
+		super(name, duration);
+		this.user = user;
 	}
+	
+	
+	@Override
+	public String toString() {
+		return super.toString() + "Nosape";
+	}
+	
+	
 }

@@ -1,18 +1,18 @@
 package model;
 public class Playlist {
+	public static final int MAX_SONGS = 30;
+	public static final int MAX_GENRES = 6;
 	private String name;
 	private Song[] songs;
 	private Genre[] genres;
-	private String duration; // Though it could be from a class Duration
+	private Duration duration;
 	
-	public Playlist(String name, int MAX_SONGS) {
+	public Playlist(String name, Duration duration) {
 		this.name = name;
-		// Presuponiendo que las playlist pueden tener maximo las canciones que hay en el pool
+		// Suponiendo que las playlist pueden tener maximo las canciones que hay en el pool
 		songs = new Song[MAX_SONGS];
-		genres = null; //Probably incorrect
-		// Other option === genres = new Genre[6];
-		//this.genres = Genre.valueOf(genres); // genre could have a toUpperCase, just in case i do not handle it outside.
-		// Starts without genre
+		genres = new Genre[MAX_GENRES];
+		this.duration = duration;
 	}
 	
 	public String getName() {
@@ -23,7 +23,7 @@ public class Playlist {
 		
 	}
 	
-	public String getDuration() {
+	public Duration getDuration() {
 		return duration;
 	}
 	

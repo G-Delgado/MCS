@@ -1,9 +1,30 @@
 package model;
 public class RestrictedPlaylist extends Playlist {
+	private static final int MAX_USERS = 5;
 	
-	public RestrictedPlaylist(String name, int MAX_SONGS) { // I see a bit of a problem in MAX_SONGS
-		super(name, MAX_SONGS); // Para indicar que estos 3 ya estan inicializados
-		// Solo se inicializan los atributos que pongamos nuevos en esta case.
+	private User[] users;
+	
+	public RestrictedPlaylist(String name, Duration duration) {
+		super(name, duration); 
+		users = new User[MAX_USERS];
+	}
+	
+	public void addUser(User user) {
+		for (int i = 0; i < MAX_USERS; i++) {
+			if (users[i] == null) {
+				users[i] = user;
+			}
+		}
+	}
+	
+	public String usersToString() {
+		String out = "Playlist users:\n";
+		for (int i = 0; i < MAX_USERS; i++) {
+			if (users[i] != null) {
+				out += "User: " + users[i].getUserName() + "\n";
+			}
+		}
+		return out;
 	}
 	
 }
