@@ -76,7 +76,43 @@ public class Main {
 	}
 	
 	public void createSong() {
+		System.out.println("Escribe el nombre de usuario que compartira la cancion: ");
+		String userName = in.nextLine();
 		
+		if (mcs.userExists(userName)) {
+			if (mcs.spaceForSongs()) {
+			
+			System.out.println("Escribe el titulo de la cancion");
+			String title = in.nextLine();
+			System.out.println("Escribe el artista de la cancion");
+			String artist = in.nextLine();
+			System.out.println("Escribe la fecha en la que salio (dd/mm/aaaa)");
+			String date = in.nextLine();
+			System.out.println("Escribe la duracion de la cancion (en segundos)");
+			double duration = in.nextDouble();
+			in.nextLine();
+			System.out.println(
+			"Escribe el genero de la cancion\n" +
+			"Opciones:\n" +
+			"Rock\n" +
+			"Hip hop \n" +
+			"Musica clasica \n" +
+			"Reggae \n" +
+			"Salsa \n" +
+			"Metal\n"
+			);
+			String genre = in.nextLine();
+			genre = genre.replaceAll(" ", "").toUpperCase();
+		
+			mcs.addSong(title, artist, date, duration, genre);
+			
+			
+			} else {
+				System.out.println("No hay espacio para mas canciones");
+			}
+		} else {
+			System.out.println("Ese usuario no existe");
+		}
 	}
 	
 	public void showSongs() {

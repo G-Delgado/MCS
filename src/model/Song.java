@@ -2,8 +2,8 @@ package model;
 public class Song {
 	private String title;
 	private String artist;
-	private String date; // Could be of type Date
-	private Duration duration; // Could be of type duration or seconds
+	private String date;
+	private Duration duration;
 	private Genre genre;
 	
 	public Song(String title, String artist, String date, Duration duration, String genre) {
@@ -52,6 +52,6 @@ public class Song {
 	}
 	
 	public void setGenre(String genre) {
-		// Transform String to Genre
+		this.genre = Genre.valueOf(genre);
 	}
 }

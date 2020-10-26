@@ -49,18 +49,63 @@ public class MCS {
 		
 	}
 	
+	public boolean spaceForSongs() {
+		boolean thereIsSomeSpace = false;
+		for (int i = 0; i < MAX_SONGS && !thereIsSomeSpace; i++) {
+			if (poolOfSongs[i] == null) {
+				thereIsSomeSpace = true;
+			}
+		}
+		return thereIsSomeSpace;
+	}
+	
+	public boolean userExists(String userNameSape) {
+		boolean userIsSomewhere = false;
+		for (int i = 0; i < MAX_USERS && !userIsSomewhere; i++) {
+			if (users[i] != null && users[i].getUserName().equals(userNameSape)) {
+				userIsSomewhere = true;
+			}
+		}
+		
+		return userIsSomewhere;
+	}
+	
 	public void addSong(String title, String artist, String date, double durationSeconds, String genre) { // We pass the data needed to create a song
 		boolean isNull = false;
 		Duration duration = convertSecondsToDuration(durationSeconds);
 		for (int i = 0; i < MAX_PLAYLIST && !isNull; i++) {
 			if (poolOfSongs[i] == null) {
 				poolOfSongs[i] = new Song(title, artist, date, duration, genre);
+				System.out.println(
+				"--------------Cancion compartida---------------- \n" +
+				"Titulo: " + poolOfSongs[i].getTitle() + "\n" +
+				"Artista: " + poolOfSongs[i].getArtist() + "\n" +
+				"Fecha de creacion: " + poolOfSongs[i].getDate() + "\n" +
+				"Duracion: " + poolOfSongs[i].getDuration() + "\n" +
+				"Genero: " + poolOfSongs[i].getGenre() + "\n"
+				);
 				isNull = true;
 			}
 		}
 	}
 	
 	public Duration convertSecondsToDuration(double durationSeconds) {
-		return new Duration(0,0,0);
+		int hours = 0;
+		int minutes = 0;
+		double seconds = 0.0;
+		hours = (int)durationSeconds/60/60;
+		minutes = (int)durationSeconds/60%60;
+		seconds = durationSeconds%60%60;
+		/*if (durationSeconds < 60) {
+			seconds = durationSeconds;
+		} else if (durationSeconds < 3600) {            RECORDAR DE RETIRAR ESTA CINTAAAA
+			minutes = durationSeconds/60;
+			seconds = durationSeconds%60;
+		} else {
+			hours = durationSeconds/60/60;
+			minutes = durationSeconds/60%60;
+			seconds = durationSeconds%60%60;
+		}*/
+		return new Duration(hours, minutes, seconds);
 	}
 }

@@ -2,6 +2,6 @@ package model;
 public enum Category {
 	NEWBIE,
 	LITTLECONTRIBUTOR,
-	MIDCONTRIBUTOR,
+	MILDCONTRIBUTOR,
 	STARCONTRIBUTOR
 }

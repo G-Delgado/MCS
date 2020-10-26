@@ -42,12 +42,26 @@ public class User {
 		return category;
 	}
 	
-	public void setCategory(String category) {
+	/*public void setCategory(String category) {
 		// Transform String to Category
-	}
+	}*/
 	
-	public void shareSong() {
-		
+	public void sharedSong() {
+		sharedSongs++;
+		System.out.println("Has compartido " + sharedSongs + " canciones");
+		if (sharedSongs <= 3) {
+			category = Category.valueOf("NEWBIE");
+			System.out.println("Tu cateogoria es: " + category);
+		} else if (sharedSongs > 3 && sharedSongs < 10) {
+			category = Category.valueOf("LITTLECONTRIBUTOR");
+			System.out.println("Tu cateogoria es: " + category);
+		} else if (sharedSongs >= 10 && sharedSongs <= 30) {
+			category = Category.valueOf("MILDCONTRIBUTOR");
+			System.out.println("Tu cateogoria es: " + category);
+		} else if (sharedSongs > 30) {
+			category = Category.valueOf("STARCONTRIBUTOR");
+			System.out.println("Tu cateogoria es: " + category + "!!!!");
+		}
 	}
 	
 	public String toString() {
