@@ -133,7 +133,7 @@ public class Main {
 	}
 	
 	public void showPlaylists() {
-		
+		System.out.println(mcs.playlistsToString());
 	}
 	
 	public void showPlaylistMenu() {
@@ -174,8 +174,13 @@ public class Main {
 				createPrivatePlaylist();
 				break;
 			case 4:
+				addUsersToPlaylist();
 				break;
 			case 5:
+				addSongToPlaylist();
+				break;
+			case 6:
+				ratePlaylist();
 				break;
 			default:
 				System.out.println("Opcion no valida");
@@ -184,14 +189,72 @@ public class Main {
 	}
 	
 	public void createPublicPlaylist() {
+		// Deberia validar que un usuario la cree?
+		System.out.println("Escribe el nombre de la playlist");
+		String name = in.nextLine();
 		
+		mcs.addPublicPlaylist(name);
 	}
 	
 	public void createRestrictedPlaylist() {
-		
+		System.out.println("Escribe el nombre del usuario");
+		String userName = in.nextLine();
+		if (mcs.userExists(userName)) {
+			System.out.println("Escribe el nombre de la playlist");
+			String name = in.nextLine();
+			mcs.addRestrictedPlaylist(name, userName);
+		} else {
+			System.out.println("Ese usuario no existe");
+		}
+	}
+	
+	public void addUsersToPlaylist() {
+		System.out.println("Escribe el nombre del usuario");
+		String userName = in.nextLine();
+		if (mcs.userExists(userName)) {
+			System.out.println("A que playlist quieres agregarlo?");
+			String name = in.nextLine();
+			
+			mcs.addToRestrictedPlaylist(name, userName);
+		} else {
+			System.out.println("Ese usuario no existe");
+		}
 	}
 	
 	public void createPrivatePlaylist(){
+		System.out.println("Escribe el nombre del usuario");
+		String userName = in.nextLine();
+		if (mcs.userExists(userName)) {
+			System.out.println("Escribe el nombre de la playlist");
+			String name = in.nextLine();
+			mcs.addPrivatePlaylist(name, userName);
+		} else {
+			System.out.println("Ese usuario no existe");
+		}
+
+	}
+
+	public void addSongToPlaylist() {
+		System.out.println("Escribe el nombre de la playlist"); //Se puede validar
+		String playlistName = in.nextLine();
+		System.out.println("Escribe el nombre de la cancion"); // Tambien se puede validar
+		String songTitle = in.nextLine();
+		
+		mcs.shareSongToPlaylist(playlistName, songTitle);
+	}
+	
+	public void ratePlaylist() {
+		System.out.println("Escribe el nombre del usuario");
+		String userName = in.nextLine();
+		if (mcs.userExists(userName)) {
+			System.out.println("Que playlist quieres calificar?");
+			String name = in.nextLine();
+			System.out.println("Que calificacion le quieres dar?");
+			double rating = in.nextDouble();
+			in.nextLine();
+			mcs.ratePublicPlaylist(name, rating);
+		}
 		
 	}
+	
 }

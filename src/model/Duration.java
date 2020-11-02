@@ -24,6 +24,11 @@ public class Duration {
 		return seconds;
 	}
 	
+	public double toSeconds() {
+		double result = (hours*60*60) + (minutes*60) + seconds;
+		return result;
+	}
+	
 	public String toString() {
 		
 		String message = hours + ":" + minutes + ":" + seconds;

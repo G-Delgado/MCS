@@ -27,7 +27,15 @@ public class Playlist {
 		return duration;
 	}
 	
-	// You can not set the duration as it is an automatic calculation
+	public void updateDuration(double broughtSeconds) {
+		double seconds = duration.toSeconds() + broughtSeconds;
+		int hours = (int)seconds/60/60;
+		int minutes = (int)seconds/60%60;
+		double finalSeconds = seconds%60%60;
+		
+		duration = new Duration(hours, minutes, finalSeconds);
+		
+	}
 	
 	public String getGenres() {
 		String output = "Genres:\n";
@@ -38,11 +46,39 @@ public class Playlist {
 		return output;
 	}
 	
-	public void setGenre(String genre) {
-		// Transfrom String to Genre
+	public void addGenre(Genre genre) {
+		boolean isNull = false;
+		for (int i = 0; i < MAX_GENRES && !isNull; i++) {
+			if (genres[i] == null) {
+				genres[i] = genre;
+				isNull = true;
+			}
+		}
+	}
+	
+	public void addSong(Song song) {
+		for (int i = 0; i < MAX_SONGS; i++) {
+			if (songs[i] == null) { // Se puede validar
+				songs[i] = song;
+			}
+		}
+		addGenre(song.getGenre());
+		updateDuration(song.getDuration().toSeconds());
+		
 	}
 	
 	public String toString() {
-		return "Sape";
+		String out = "\n**************  Playlist **************\n" +
+		"**  Title: " + name + "\n" + 
+		"**  Duration: " + duration + "\n" +
+		"**  Genre: " ;
+		
+		for (int i = 0; i < MAX_GENRES; i++) {
+			if (genres[i] != null) {
+				out += genres[i] + ", "; 
+			}
+		}
+		
+		return out;
 	}
 }

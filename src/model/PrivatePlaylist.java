@@ -10,8 +10,11 @@ public class PrivatePlaylist extends Playlist {
 	
 	@Override
 	public String toString() {
-		return super.toString() + "Nosape";
+		return super.toString() + "\n" +
+		"**  Usuario: " + user.getUserName() + "\n" +
+		"***************************************\n";
 	}
 	
 	
 }
+

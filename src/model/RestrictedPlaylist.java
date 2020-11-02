@@ -5,27 +5,37 @@ public class RestrictedPlaylist extends Playlist {
 	private User[] users;
 
 	
-	public RestrictedPlaylist(String name, Duration duration) {
+	public RestrictedPlaylist(String name, Duration duration, User user) {
 		super(name, duration); 
 		users = new User[MAX_USERS]; // Podemos hacerlo de esta forma, o que la persona que lo cree se agregue directamente. O como un metodo, como ya lo tenemos
+		users[0] = user;
 	}
 	
 	public void addUser(User user) {
-		for (int i = 0; i < MAX_USERS; i++) {
+		boolean isNull = false;
+		for (int i = 0; i < MAX_USERS && !isNull; i++) {
 			if (users[i] == null) {
 				users[i] = user;
+				isNull = true;
 			}
 		}
 	}
 	
 	public String usersToString() {
-		String out = "Playlist users:\n";
+		String out = "";
 		for (int i = 0; i < MAX_USERS; i++) {
 			if (users[i] != null) {
-				out += "User: " + users[i].getUserName() + "\n";
+				out += users[i].getUserName() + ",";
 			}
 		}
 		return out;
+	}
+	
+	@Override
+	public String toString() {
+		return super.toString() + "\n" + 
+		"Usuarios: " + usersToString() + "\n" +
+		"***************************************\n";
 	}
 	
 }
