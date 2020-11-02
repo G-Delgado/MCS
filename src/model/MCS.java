@@ -7,7 +7,7 @@ public class MCS {
 	
 	private User[] users;
 	private Playlist[] playlists;
-	private Song[] poolOfSongs; // Or pool?
+	private Song[] poolOfSongs;
 	
 	public MCS() {
 		users = new User[MAX_USERS];
@@ -22,14 +22,21 @@ public class MCS {
 				users[i] = new User(name, password, age);
 				isNull = true;
 			}
-			
-			System.out.println(
-			"Usuario: " + users[i].getUserName() + "\n" +
-			"Contrasena: " + users[i].getPassword() + "\n" +
-			"Edad: " + users[i].getAge() + "\n"
-			);
 		}
 	}
+	
+	public void userSharedSong(String userName) {
+		boolean found = false;
+		for (int i = 0; i < MAX_USERS && !found; i++) {
+			if (users[i] != null && users[i].getUserName().equals(userName)) {
+				users[i].sharedSong();
+				System.out.println("Compartiste!");
+				found = true;
+			}
+		}
+	}
+	
+	/*We are going to create the playlist with overloaded methods, this way we only need to change some parameters, at the best panorama*/
 	public void addPublicPlaylist (String name) { // I need to pass a public, private or restricted playlist, not a "PLAYLIST" as a whole
 		boolean isNull = false;
 		Duration duration = new Duration(0,0,0);
@@ -76,14 +83,6 @@ public class MCS {
 		for (int i = 0; i < MAX_PLAYLIST && !isNull; i++) {
 			if (poolOfSongs[i] == null) {
 				poolOfSongs[i] = new Song(title, artist, date, duration, genre);
-				System.out.println(
-				"--------------Cancion compartida---------------- \n" +
-				"Titulo: " + poolOfSongs[i].getTitle() + "\n" +
-				"Artista: " + poolOfSongs[i].getArtist() + "\n" +
-				"Fecha de creacion: " + poolOfSongs[i].getDate() + "\n" +
-				"Duracion: " + poolOfSongs[i].getDuration() + "\n" +
-				"Genero: " + poolOfSongs[i].getGenre() + "\n"
-				);
 				isNull = true;
 			}
 		}
@@ -108,4 +107,32 @@ public class MCS {
 		}*/
 		return new Duration(hours, minutes, seconds);
 	}
+
+	public String songsToString() { // Tengo que hacer que los usuarios obtengan un ++ por cada cancion que compartan.
+		String out = ""; // Si tengo un toString de las canciones, me evitaria tener que hacer estos llamados aqui, lo que lo haria mejor :D
+		for (int i = 0; i < MAX_SONGS; i++) {
+			if (poolOfSongs[i] != null) {
+				out += "\n**************  Song  **************\n" +
+				"** Title: " + poolOfSongs[i].getTitle() + "\n" +
+				"** Artist: " + poolOfSongs[i].getArtist() + "\n" +
+				"** Duration: " + poolOfSongs[i].getDuration() + "\n" +
+				"** Genre: " + poolOfSongs[i].getGenre() + "\n" +
+				"***********************************\n";
+			}
+		}
+		
+		return out;
+	}
+
+	public String usersToString() {
+		String out = "";
+		for (int i = 0; i < MAX_USERS; i++) {
+			if (users[i] != null) {
+				out += users[i].toString();
+			}
+		}
+		
+		return out;
+	}
+	
 }

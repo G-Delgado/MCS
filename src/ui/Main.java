@@ -26,11 +26,13 @@ public class Main {
 	
 	public int showMenu() {
 		System.out.println(
-		"Menu!\n" +
+		"\nMenu!\n" +
 		"(1) Agrear un usuario\n" +
-		"(2) Operaciones con playlist\n" +
+		"(2) Operaciones con las playlist\n" +
 		"(3) Compartir una cancion\n" +
 		"(4) Listar canciones\n" +
+		"(5) Listar usuarios\n" +
+		"(6) Listar playlists\n" +
 		"(0) Para salir\n"
 		);
 		
@@ -56,6 +58,12 @@ public class Main {
 				break;
 			case 4:
 				showSongs();
+				break;
+			case 5:
+				showUsers();
+				break;
+			case 6:
+				showPlaylists();
 				break;
 			default:
 				System.out.println("Opcion no valida");
@@ -105,6 +113,7 @@ public class Main {
 			genre = genre.replaceAll(" ", "").toUpperCase();
 		
 			mcs.addSong(title, artist, date, duration, genre);
+			mcs.userSharedSong(userName);
 			
 			
 			} else {
@@ -116,6 +125,14 @@ public class Main {
 	}
 	
 	public void showSongs() {
+		System.out.println(mcs.songsToString());
+	}
+	
+	public void showUsers() {
+		System.out.println(mcs.usersToString());
+	}
+	
+	public void showPlaylists() {
 		
 	}
 	
@@ -124,12 +141,13 @@ public class Main {
 		
 		do {
 			System.out.println(
-			"Menu de playlist\n" +
+			"\nMenu de playlist\n" +
 			"(1) Crear playlist publica\n" +
 			"(2) Crear playlist restringida\n" +
 			"(3) Crear playlist privada\n" +
 			"(4) Anadir usuarios a una playlist restringida\n" +
 			"(5) Subir canciones a playlist\n" +
+			"(6) Calificar playlist publica\n" +
 			"(0) Para salir\n"
 			);
 			
@@ -168,7 +186,6 @@ public class Main {
 	public void createPublicPlaylist() {
 		
 	}
-	
 	
 	public void createRestrictedPlaylist() {
 		
