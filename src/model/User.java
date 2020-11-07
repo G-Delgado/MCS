@@ -1,11 +1,22 @@
 package model;
 public class User {
-	private String userName;
-	private String password;
-	private int age;
-	private Category category;
-	private int sharedSongs;
+	// -------------	Atributes and relations		------------- //
+	private String userName; // The user's username. Used in a variety of methods
+	private String password; // User's password.
+	private int age; // User's age. Used in the display of information
+	private Category category; // User's category, used in a couple methods and to display the information of the user.
+	private int sharedSongs; // Ammount of sharedSongs of the user.
+	// -------------------------------------------------------------
+	/**
+	* User's constructor.<br>
+	* pre: All the atributes must be defined and diferent from either an empty string or a 0.<br>
+	* pos: <br>
+	* @param userName.	User's username, asigned to the atribute userName.<br>
+	* @param password.	User's password, asigned to the atribute password.<br>
+	* @param age.	User's age, asigned to the atribute age.
+	*/
 	
+	// -------------	Constructor		------------- //
 	public User(String userName, String password, int age) {
 		this.userName = userName;
 		this.password = password;
@@ -13,7 +24,9 @@ public class User {
 		this.category = Category.valueOf("NEWBIE");
 		sharedSongs = 0;
 	}
+	// ------------------------------------------------
 	
+	// -------------	Methods		------------- //
 	public String getUserName() {
 		return userName;
 	}
@@ -43,9 +56,9 @@ public class User {
 	}
 	
 	/**
-	*
-	*
-	*
+	* Increases the shared songs by one and checks whether the user leveled up his category or not. <br>
+	* pre: <br>
+	* pos: <br>
 	*/
 	
 	public void sharedSong() {
@@ -67,16 +80,20 @@ public class User {
 	}
 	
 	/**
-	*
-	*
-	*
+	* Creates and returns a message that contains the importat information of the user. <br>
+	* pre: <br>
+	* pos: <br>
+	* @return message. Contains the information of the user.
 	*/
 	
 	public String toString() {
-		return "\n*************  User *************\n" +
+		String message = "\n*************  User *************\n" +
 		"**  UserName: " + userName + "\n" +
 		"**  Age: " + age + "\n" +
 		"**  Category: " + category + "\n" +
 		"*********************************\n";
+	return message;
 	}
+	// ------------------------------------------------
+	
 }

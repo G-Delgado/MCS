@@ -1,23 +1,29 @@
 package model;
 public class MCS {
 	// -------------	Constants	------------- //
-	public static final int MAX_USERS = 10;
-	public static final int MAX_PLAYLIST = 20;
-	public static final int MAX_SONGS = 30;
-	// --------------------------------------------
+	public static final int MAX_USERS = 10; // Represents the max number of users that can fit in the app.
+	public static final int MAX_PLAYLIST = 20; // Represents the max number of playlists that can fit in the app.
+	public static final int MAX_SONGS = 30; // Represents the max number of songs that can fit in the app.
+	// -------------------------------------------- 
 	
 	// -------------	Atributes and relations		------------- //
-	private User[] users;
-	private Playlist[] playlists;
-	private Song[] poolOfSongs;
-	// --------------------------------------------
+	private User[] users; // Represents the array of users, used in a variety of methods.
+	private Playlist[] playlists; // Represents the array of playlists, used in a variety of methods.
+	private Song[] poolOfSongs; // Represents the array of songs, used in a variety of methods.
+	// -------------------------------------------------------------
 	
+	/**
+	* MCS' Constructor.<br>
+	* pre: <br>
+	* pos The users, playlists and poolOfSongs arrays will be initialized.<br>
+	*/
+	// -------------	Constructor		------------- //
 	public MCS() {
 		users = new User[MAX_USERS];
 		playlists = new Playlist[MAX_PLAYLIST];
 		poolOfSongs = new Song[MAX_SONGS];
 	}
-	
+	// ------------------------------------------------
 	/**
 	* Adds a new user to the MCS application
 	* pre: The name and password must be diferent from an empty string, the age must be different than 0.<br>
@@ -26,7 +32,7 @@ public class MCS {
 	* @param password.	User's password, used to create and add the user. <br>
 	* @param age.	User's age, used to create and add the user. <br>
 	*/
-	
+	// -------------	Methods		------------- //
 	public void addUser(String name, String password, int age) { // We pass the data needed to create an user
 		boolean isNull = false;
 		for (int i = 0; i < MAX_USERS && !isNull; i++) {
@@ -244,6 +250,7 @@ public class MCS {
 	* Confirms whether the user exists or doesnt exists in the users array. <br>
 	* pre: The userNameSape should be different from an empty string<br>
 	* pos: <br>
+	* @param userNameSape.	Represents the username of the user to search.
 	* @return userIsSomewhere.	Its boolean value determines whether the user exists or doesnt exists in the users array.
 	*/
 	
@@ -280,9 +287,11 @@ public class MCS {
 	}
 	
 	/**
-	*
-	*
-	*
+	* Converts the seconds given into a Duration object. <br>
+	* pre: The durationSeconds should be greather than 0.<br>
+	* pos: <br>
+	* @param durationSeconds.	Used to divide and create an object of type Duration.<br>
+	* @return mock.	Object of type duration
 	*/
 	
 	public Duration convertSecondsToDuration(double durationSeconds) {
@@ -292,14 +301,15 @@ public class MCS {
 		hours = (int)durationSeconds/60/60;
 		minutes = (int)durationSeconds/60%60;
 		seconds = durationSeconds%60%60;
-		
-		return new Duration(hours, minutes, seconds);
+		Duration mock = new Duration(hours, minutes, seconds);
+		return mock;
 	}
 
 	/**
-	*
-	*
-	*
+	* Creates a string that contains the information of each song in the application.<br>
+	* pre: <br>
+	* pos: <br>
+	* @return out.	Of type String, returns a message with the information of all the songs.
 	*/
 
 	public String songsToString() { 
@@ -313,11 +323,11 @@ public class MCS {
 	}
 
 	/**
-	*
-	*
-	*
+	* Creates a string that contains the information of each user in the application.<br>
+	* pre: <br>
+	* pos: <br>
+	* @return out.	Of type String, returns a message with the information of all the users.
 	*/
-
 	public String usersToString() {
 		String out = "";
 		for (int i = 0; i < MAX_USERS; i++) {
@@ -329,9 +339,10 @@ public class MCS {
 	}
 	
 	/**
-	*
-	*
-	*
+	* Creates a string that contains the information of each playlist in the application.<br>
+	* pre: <br>
+	* pos: <br>
+	* @return out.	Of type String, returns a message with the information of all the playlists.
 	*/
 	
 	public String playlistsToString() {
@@ -343,4 +354,5 @@ public class MCS {
 		}
 		return out;
 	}
+	// ------------------------------------------------
 }

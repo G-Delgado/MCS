@@ -1,11 +1,25 @@
 package model;
 public class Song {
-	private String title;
-	private String artist;
-	private String date;
-	private Duration duration;
-	private Genre genre;
+	// -------------	Atributes and relations		------------- //
+	private String title; // Represents the title of the song, used to find and print the song
+	private String artist; // The artist that created the song
+	private String date; // The date of release of the song
+	private Duration duration; // Type Duration. The duration of the song
+	private Genre genre; // Genre of the song
+	// -------------------------------------------------------------
 	
+	/**
+	* Playlist's constructor.<br>
+	* pre: All the parameters should be defined<br>
+	* pos: Initializes the songs and genres arrays<br>
+	* @param title.	Of type String, represents the name of the song.<br>
+	* @param artist. Of type String, represents the name of the artist<br>
+	* @param date.  Of type String, represents the date of release in the format dd/mm/aaaa<br>
+	* @param duration	Of type Duration, represents the current duration of the playlist.<br>
+	* @param genre. Of type String, represents one of the values in the Genre enum.<br>
+	*/
+	
+	// -------------	Constructor		------------- //
 	public Song(String title, String artist, String date, Duration duration, String genre) {
 		this.title = title;
 		this.artist = artist;
@@ -13,7 +27,9 @@ public class Song {
 		this.duration = duration;
 		this.genre = Genre.valueOf(genre);
 	}
+	// ------------------------------------------------
 	
+	// -------------	Methods		------------- //
 	public String getTitle() {
 		return title;
 	}
@@ -56,9 +72,10 @@ public class Song {
 	}
 	
 	/**
-	*
-	*
-	*
+	* Creates and returns a message with the song information.<br>
+	* pre: <br>
+	* pos: <br>
+	* @return out.	Contains the information of the song.
 	*/
 	
 	public String toString() {
@@ -70,4 +87,5 @@ public class Song {
 				"***********************************\n";
 		return out;
 	}
+	// ------------------------------------------------
 }

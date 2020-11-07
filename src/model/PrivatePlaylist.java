@@ -1,12 +1,25 @@
 package model;
 public class PrivatePlaylist extends Playlist {
-	private User user;
+	// -------------	Atributes and relations		------------- //
+	private User user; // The user that created the playlist
+	// -------------------------------------------------------------
 	
+	/**
+	* Private Playlist's constructor.<br>
+	* pre: All the parameters should be defined<br>
+	* pos: <br>
+	* @param name.	Of type String, represents the name of the playlist.<br>
+	* @param duration	Of type Duration, represents the current duration of the playlist.<br>
+	* @param user	Of type User, represents the user that created the playlist.
+	*/
+	// -------------	Constructor		------------- //
 	public PrivatePlaylist(String name, Duration duration, User user) {
 		super(name, duration);
 		this.user = user;
 	}
+	// ------------------------------------------------
 	
+	// -------------	Methods		------------- //
 	public User getUser() {
 		return user;
 	}
@@ -17,18 +30,19 @@ public class PrivatePlaylist extends Playlist {
 	
 	
 	/**
-	*
-	*
-	*
+	* Returns a message with the information of the playlist.<br>
+	* pre: <br>
+	* pos: <br>
+	* @return message.	Message that contains the information of the playlist
 	*/
 	
 	@Override
 	public String toString() {
-		return super.toString() + "\n" +
+		String message = super.toString() + "\n" +
 		"**  User: " + user.getUserName() + "\n" +
 		"***************************************\n";
+		return message;
 	}
-	
-	
+	// ------------------------------------------------
 }
 
