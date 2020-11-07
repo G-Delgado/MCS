@@ -11,6 +11,12 @@ public class RestrictedPlaylist extends Playlist {
 		users[0] = user;
 	}
 	
+	/**
+	*
+	*
+	*
+	*/
+	
 	public void addUser(User user) {
 		boolean isNull = false;
 		for (int i = 0; i < MAX_USERS && !isNull; i++) {
@@ -20,6 +26,28 @@ public class RestrictedPlaylist extends Playlist {
 			}
 		}
 	}
+	
+	/**
+	*
+	*
+	*
+	*/
+	
+	public boolean isUser(String userName) {
+		boolean found = false;
+		for (int i = 0; i < MAX_USERS && !found; i++) {
+			if (users[i] != null && users[i].getUserName().equals(userName)) {
+				found = true;
+			}
+		}
+		return found;
+	}
+	
+	/**
+	*
+	*
+	*
+	*/
 	
 	public String usersToString() {
 		String out = "";
@@ -31,10 +59,16 @@ public class RestrictedPlaylist extends Playlist {
 		return out;
 	}
 	
+	/**
+	*
+	*
+	*
+	*/
+	
 	@Override
 	public String toString() {
 		return super.toString() + "\n" + 
-		"Usuarios: " + usersToString() + "\n" +
+		"**  Users: " + usersToString() + "\n" +
 		"***************************************\n";
 	}
 	

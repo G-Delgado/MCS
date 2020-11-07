@@ -24,6 +24,12 @@ public class PublicPlaylist extends Playlist {
 		return (sum/counter);
 	}
 	
+	/**
+	*
+	*
+	*
+	*/
+	
 	public void addRating(double newRating) {
 		boolean isNull = false;
 		for (int i = 0; i < rating.length && !isNull; i++) {
@@ -33,6 +39,12 @@ public class PublicPlaylist extends Playlist {
 			}
 		}
 	}
+	
+	/**
+	*
+	*
+	*
+	*/
 	
 	@Override
 	public String toString() {

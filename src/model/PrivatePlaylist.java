@@ -7,11 +7,25 @@ public class PrivatePlaylist extends Playlist {
 		this.user = user;
 	}
 	
+	public User getUser() {
+		return user;
+	}
+	
+	public void setUser(User user) {
+		this.user = user;
+	}
+	
+	
+	/**
+	*
+	*
+	*
+	*/
 	
 	@Override
 	public String toString() {
 		return super.toString() + "\n" +
-		"**  Usuario: " + user.getUserName() + "\n" +
+		"**  User: " + user.getUserName() + "\n" +
 		"***************************************\n";
 	}
 	

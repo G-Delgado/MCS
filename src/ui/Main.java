@@ -1,16 +1,30 @@
 package ui;
 
+/**
+* @author Gabriel Delgado
+*/
 import java.util.Scanner;
 import model.MCS;
 
 public class Main {
-	private MCS mcs;
-	private Scanner in;
+	
+	// -------------	Atributes y relations	------------- //
+	
+	private MCS mcs; // Represents the management class of the problem.
+	private Scanner in; // The scanner to read the inputs
+	
+	// --------------------------------------------
+	
+	// -------------	Constructor		------------- //
 	
 	public Main() {
 		mcs = new MCS();
 		in = new Scanner(System.in);
 	}
+	
+	// --------------------------------------------
+	
+	// -------------	Entry of the program	------------- //
 	
 	public static void main (String args[]) {
 		Main ppal = new Main();
@@ -23,6 +37,17 @@ public class Main {
 			
 		} while (option != 0);
 	}
+	
+	// --------------------------------------------
+	
+	/**
+	* Displays the gui and shows the available options. <br>
+	* pre: <br>
+	* pos: <br>
+	* @return opt. of type int.
+	*/
+	
+	// -------------	Methods		------------- //
 	
 	public int showMenu() {
 		System.out.println(
@@ -41,6 +66,13 @@ public class Main {
 		
 		return opt;
 	}
+	
+	/**
+	* Executes a method based on the option. <br>
+	* pre: opt must be between 0 and 6. <br>
+	* pos: <br>
+	* @param opt. integer used to choose the method to execute.
+	*/
 	
 	public void executeOperation(int opt) {
 		switch (opt) {
@@ -71,6 +103,12 @@ public class Main {
 		}
 	}
 	
+	/**
+	* Asks for the data and creates an user. <br>
+	* pre: The username shouldn't have any spaces<br>
+	* pos: <br>
+	*/
+	
 	public void createUser() {
 		System.out.println("Escribe el nombre de usuario");
 		String userName = in.nextLine();
@@ -82,6 +120,12 @@ public class Main {
 		
 		mcs.addUser(userName, password, age);
 	}
+	
+	/**
+	* Asks for the data and creates a song. <br>
+	* pre: <br>
+	* pos: <br>
+	*/
 	
 	public void createSong() {
 		System.out.println("Escribe el nombre de usuario que compartira la cancion: ");
@@ -124,17 +168,41 @@ public class Main {
 		}
 	}
 	
+	/**
+	* Displays the existing songs. <br>
+	* pre: <br>
+	* pos: <br>
+	*/
+	
 	public void showSongs() {
 		System.out.println(mcs.songsToString());
 	}
+	
+	/**
+	* Displays the existing users. <br>
+	* pre: <br>
+	* pos: <br>
+	*/
 	
 	public void showUsers() {
 		System.out.println(mcs.usersToString());
 	}
 	
+	/**
+	* Displays the existing playlists. <br>
+	* pre: <br>
+	* pos: <br>
+	*/
+	
 	public void showPlaylists() {
 		System.out.println(mcs.playlistsToString());
 	}
+	
+	/**
+	* Displays a gui for the available playlists interactions. <br>
+	* pre: <br>
+	* pos: <br>
+	*/
 	
 	public void showPlaylistMenu() {
 		int opt = 0;
@@ -158,6 +226,13 @@ public class Main {
 		} while (opt != 0);
 		
 	}
+	
+	/**
+	* Executes a method of the playlist gui based on the option. <br>
+	* pre: opt must be between 0 and 6. <br>
+	* pos: <br>
+	* @param opt. integer used to choose the method to execute.
+	*/
 	
 	public void executePlaylistOperation(int opt) {
 		switch (opt) {
@@ -188,6 +263,12 @@ public class Main {
 		}
 	}
 	
+	/**
+	* Asks for the data needed to create a public playlist and creates one. <br>
+	* pre: <br>
+	* pos: <br>
+	*/
+	
 	public void createPublicPlaylist() {
 		// Deberia validar que un usuario la cree?
 		System.out.println("Escribe el nombre de la playlist");
@@ -195,6 +276,12 @@ public class Main {
 		
 		mcs.addPublicPlaylist(name);
 	}
+	
+	/**
+	* Asks for the data needed to create a restricted playlist and creates one. <br>
+	* pre: The user's username must be defined in the application<br>
+	* pos: <br>
+	*/
 	
 	public void createRestrictedPlaylist() {
 		System.out.println("Escribe el nombre del usuario");
@@ -207,6 +294,12 @@ public class Main {
 			System.out.println("Ese usuario no existe");
 		}
 	}
+	
+	/**
+	* Asks for the user to add to a restricted playlist <br>
+	* pre: The user's username must be defined in the application.<br>
+	* pos: <br>
+	*/
 	
 	public void addUsersToPlaylist() {
 		System.out.println("Escribe el nombre del usuario");
@@ -221,6 +314,12 @@ public class Main {
 		}
 	}
 	
+	/**
+	* Asks for the data needed to create a private playlist and creates one. <br>
+	* pre: The user's username must be defined in the application<br>
+	* pos: <br>
+	*/
+	
 	public void createPrivatePlaylist(){
 		System.out.println("Escribe el nombre del usuario");
 		String userName = in.nextLine();
@@ -234,14 +333,31 @@ public class Main {
 
 	}
 
+	/**
+	* Asks for an user's username and a song, to verify and insert in a playlist. <br>
+	* pre: The user, the song and the playlist must be defined in the application. <br>
+	* pos: <br>
+	*/
+
 	public void addSongToPlaylist() {
-		System.out.println("Escribe el nombre de la playlist"); //Se puede validar
-		String playlistName = in.nextLine();
-		System.out.println("Escribe el nombre de la cancion"); // Tambien se puede validar
-		String songTitle = in.nextLine();
-		
-		mcs.shareSongToPlaylist(playlistName, songTitle);
+		System.out.println("Escribe el nombre del usuario que compartira la cancion");
+		String userName = in.nextLine();
+		if (mcs.userExists(userName)) {
+			System.out.println("Escribe el nombre de la playlist"); 
+			String playlistName = in.nextLine();
+			System.out.println("Escribe el nombre de la cancion"); 
+			String songTitle = in.nextLine();
+			mcs.shareSongToPlaylist(playlistName, songTitle, userName);
+		} else {
+			System.out.println("Este usuario no existe");
+		}	
 	}
+	
+	/**
+	* Asks for an user's username and a playlist name to rate it. <br>
+	* pre: The playlist must be public and the user and the playlist must be defined..<br>
+	* pos: <br>
+	*/
 	
 	public void ratePlaylist() {
 		System.out.println("Escribe el nombre del usuario");
@@ -256,5 +372,7 @@ public class Main {
 		}
 		
 	}
+	
+	// --------------------------------------------
 	
 }

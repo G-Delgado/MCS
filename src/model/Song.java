@@ -43,8 +43,8 @@ public class Song {
 		return duration;
 	}
 	
-	public void setDuration(String duration) {
-		
+	public void setDuration(Duration duration) {
+		this.duration = duration;
 	}
 	
 	public Genre getGenre() {
@@ -53,5 +53,21 @@ public class Song {
 	
 	public void setGenre(String genre) {
 		this.genre = Genre.valueOf(genre);
+	}
+	
+	/**
+	*
+	*
+	*
+	*/
+	
+	public String toString() {
+		String out = "\n**************  Song  **************\n" +
+				"** Title: " + title + "\n" +
+				"** Artist: " + artist + "\n" +
+				"** Duration: " + duration + "\n" +
+				"** Genre: " + genre + "\n" +
+				"***********************************\n";
+		return out;
 	}
 }

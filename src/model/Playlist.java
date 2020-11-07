@@ -1,5 +1,5 @@
 package model;
-public class Playlist {
+public abstract class Playlist {
 	public static final int MAX_SONGS = 30;
 	public static final int MAX_GENRES = 6;
 	private String name;
@@ -27,7 +27,14 @@ public class Playlist {
 		return duration;
 	}
 	
-	public void updateDuration(double broughtSeconds) {
+	/**
+	* Updates the duration each time a new song is added to the playlist.<br>
+	* pre: The song must be defined and have its duration defined.<br>
+	* pos: <br>
+	* @param broughtSeconds. Seconds brough from the song to add
+	*/
+	
+	public void updateDuration(double broughtSeconds) { // REVISARR!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 		double seconds = duration.toSeconds() + broughtSeconds;
 		int hours = (int)seconds/60/60;
 		int minutes = (int)seconds/60%60;
@@ -46,6 +53,13 @@ public class Playlist {
 		return output;
 	}
 	
+	/**
+	* Adds a new genre to the playlist.<br> 
+	* pre: The genre must be defined.<br>
+	* pos: The array genres will have the first null position replaced by the genre.<br>
+	* @param genre. Genre to add to the array of genres
+	*/
+	
 	public void addGenre(Genre genre) {
 		boolean isNull = false;
 		for (int i = 0; i < MAX_GENRES && !isNull; i++) {
@@ -55,6 +69,13 @@ public class Playlist {
 			}
 		}
 	}
+	
+	/**
+	* Adds a new song to the playlist,<br>
+	* pre: The song must be defined.<br>
+	* pos: The array of songs will have on of its null positions replace by the song.<br>
+	* @param song. Song to add to the array of songs.
+	*/
 	
 	public void addSong(Song song) {
 		for (int i = 0; i < MAX_SONGS; i++) {
@@ -66,6 +87,13 @@ public class Playlist {
 		updateDuration(song.getDuration().toSeconds());
 		
 	}
+	
+	/**
+	* Converts the information of the playlist into a message.<br>
+	* pre: All the values to return must be defined.<br>
+	* pos: <br>
+	* @return out. Message that contains the essential information of the array
+	*/
 	
 	public String toString() {
 		String out = "\n**************  Playlist **************\n" +

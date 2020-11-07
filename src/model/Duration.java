@@ -29,6 +29,12 @@ public class Duration {
 		return result;
 	}
 	
+	/**
+	*
+	*
+	*
+	*/
+	
 	public String toString() {
 		
 		String message = hours + ":" + minutes + ":" + seconds;

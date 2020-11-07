@@ -10,7 +10,7 @@ public class User {
 		this.userName = userName;
 		this.password = password;
 		this.age = age;
-		this.category = Category.valueOf("NEWBIE"); // We could use toUpperCase or pass it directly like a Type Category
+		this.category = Category.valueOf("NEWBIE");
 		sharedSongs = 0;
 	}
 	
@@ -42,9 +42,11 @@ public class User {
 		return category;
 	}
 	
-	/*public void setCategory(String category) {
-		// Transform String to Category
-	}*/
+	/**
+	*
+	*
+	*
+	*/
 	
 	public void sharedSong() {
 		sharedSongs++;
@@ -64,11 +66,17 @@ public class User {
 		}
 	}
 	
+	/**
+	*
+	*
+	*
+	*/
+	
 	public String toString() {
 		return "\n*************  User *************\n" +
 		"**  UserName: " + userName + "\n" +
 		"**  Age: " + age + "\n" +
 		"**  Category: " + category + "\n" +
-		"***********************************\n";
+		"*********************************\n";
 	}
 }
